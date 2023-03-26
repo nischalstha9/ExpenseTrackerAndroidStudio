@@ -4,6 +4,7 @@ package com.nischalstha9.expensetracker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class Login extends Activity implements View.OnClickListener{
     @Override
@@ -48,8 +63,37 @@ public class Login extends Activity implements View.OnClickListener{
 
         }
         else if(view.getId()==R.id.registerHelper) {
-            Intent i = new Intent(getApplicationContext(), Register.class);
-            startActivity(i);
+            // Instantiate the RequestQueue.
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url = "https://nischalstha9.pythonanywhere.com/api/portfolio/about/?format=json";
+
+            StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    System.out.println(response.toString());
+//                    textView.setText(response.toString());
+//                    try {
+//                        JSONObject object=new JSONObject(response);
+//                        JSONArray array=object.getJSONArray("users");
+//                        for(int i=0;i<array.length();i++) {
+//                            JSONObject object1=array.getJSONObject(i);
+//                            textView.setText(object1.toString());
+//                        }
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    System.out.println(error.toString());
+                }
+            });
+
+
+            MySingleton.getInstance(this).addToRequestQueue(request);
+//            Intent i = new Intent(getApplicationContext(), Register.class);
+//            startActivity(i);
         }
     }
 }

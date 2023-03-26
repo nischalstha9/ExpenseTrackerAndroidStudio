@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ExpenseTracker</string>
+    <string name="login_title">Login</string>
+    <string name="register_title">Register</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_btn_hint">Login</string>
+    <string name="register_btn_hint">Register</string>
+</resources>

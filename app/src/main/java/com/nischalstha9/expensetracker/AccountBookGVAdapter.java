@@ -23,16 +23,15 @@ public class AccountBookGVAdapter extends ArrayAdapter<AccountBookModel> {
 
         View listitemView = convertView;
         if (listitemView == null) {
-            // Layout Inflater inflates each item to be displayed in GridView.
             listitemView = LayoutInflater.from(getContext()).inflate(R.layout.card, parent, false);
         }
 
-        AccountBookModel courseModel = getItem(position);
-        TextView accountBookTV = listitemView.findViewById(R.id.idTVCourse);
-        ImageView accountBookIV = listitemView.findViewById(R.id.idIVcourse);
+        AccountBookModel abm = getItem(position);
+        TextView accountBookTitleTV = listitemView.findViewById(R.id.TitleTVAccountBook);
+        TextView accountBookBalanceTV = listitemView.findViewById(R.id.BalanceTVAccountBook);
 
-        accountBookTV.setText(courseModel.getAccountBookName());
-        accountBookIV.setImageResource(courseModel.getAccountBookId());
+        accountBookTitleTV.setText(abm.getAccountBookName());
+        accountBookBalanceTV.setText("Rs. "+String.valueOf(abm.getAccountBookBalance())+"/-");
         return listitemView;
     }
 }

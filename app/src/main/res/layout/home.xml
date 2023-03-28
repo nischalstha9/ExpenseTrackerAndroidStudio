@@ -14,12 +14,13 @@
 <!--        />-->
 
     <GridView
-        android:id="@+id/idGVcourses"
+        android:id="@+id/accountBookGV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:horizontalSpacing="6dp"
         android:numColumns="2"
         android:verticalSpacing="6dp"
+        android:padding="5dp"
         />
 
 
